@@ -33,6 +33,7 @@ class AlienInvasion:
             self.ship.blitme()
             
             pygame.display.flip()
+            name = "eugene"
                 
     def run_game(self):
         # Запуск основного цикла игры
