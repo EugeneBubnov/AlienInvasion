@@ -10,9 +10,11 @@ class AlienInvasion:
         pygame.init
         pygame.display.set_caption('Alien Invasion')
         self.settings = settings()
-        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
+        self.screen = pygame.display.set_mode((1920, 1080), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
         self.ship = Ship(self)
-        self.backgroud_image = pygame.image.load('models\\background.png')
+        self.backgroud_image = pygame.image.load('models\\background_1.png')
         
     def _check_events(self):
             # Чтение событий
@@ -21,21 +23,30 @@ class AlienInvasion:
                 sys.exit()
                 
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    # Переместить корабль вправо
-                    self.ship.moving_right = True
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_LEFT:
-                    # move to left
-                        self.ship.moving_left = True
-                    
+                self._check_keydown_events(event)           
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
-                    self.ship.moving_right = False
-                elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_LEFT:
-                        self.ship.moving_left = False
+                self._check_keyup_events(event)
+
+
                     
+    def _check_keydown_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            # Переместить корабль вправо
+            self.ship.moving_right = True
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                 # move to left
+                    self.ship.moving_left = True
+        if event.key == pygame.K_q:
+            sys.exit()
+
+                        
+    def _check_keyup_events(self, event):
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = False
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT:
+                self.ship.moving_left = False
     
     def _update_screen(self):
             #self.screen.fill(self.settings.bg_color)
