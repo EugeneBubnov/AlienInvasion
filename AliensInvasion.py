@@ -1,6 +1,6 @@
 import sys
 import pygame
-from settings import Settings
+from settings import settings
 from ship import *
 
 # Класс для управления ресурсами и поведением игры
@@ -9,7 +9,7 @@ class AlienInvasion:
     def __init__(self):
         pygame.init
         pygame.display.set_caption('Alien Invasion')
-        self.settings = Settings()
+        self.settings = settings()
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         self.ship = Ship(self)
         self.backgroud_image = pygame.image.load('models\\background.png')
@@ -17,15 +17,25 @@ class AlienInvasion:
     def _check_events(self):
             # Чтение событий
         for event in pygame.event.get():
-            if(event.type == pygame.QUIT):
+            if event.type == pygame.QUIT:
                 sys.exit()
-            elif(event.type == pygame.KEYDOWN):
-                if(event.key == pygame.K_RIGHT):
+                
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
                     # Переместить корабль вправо
                     self.ship.moving_right = True
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT:
+                    # move to left
+                        self.ship.moving_left = True
+                    
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = False
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_LEFT:
+                        self.ship.moving_left = False
+                    
     
     def _update_screen(self):
             #self.screen.fill(self.settings.bg_color)
@@ -33,7 +43,6 @@ class AlienInvasion:
             self.ship.blitme()
             
             pygame.display.flip()
-            name = "eugene"
                 
     def run_game(self):
         # Запуск основного цикла игры
