@@ -19,13 +19,13 @@ class AlienInvasion:
         
         self.bullets = pygame.sprite.Group()
                
-    #def _fire_bullet(self):
-       # new_bullet = Bullet(self)
-       # self.bullets.add(new_bullet)
+    def _fire_bullet(self):
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
     
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
-            # Переместить корабль вправо
+            # move to right
             self.ship.moving_right = True
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
@@ -33,7 +33,7 @@ class AlienInvasion:
                     self.ship.moving_left = True
         if event.key == pygame.K_q:
             sys.exit()
-       # elif event.key == pygame.K_SPACE:
+        elif event.key == pygame.K_SPACE:
             self._fire_bullet()
     
     def _check_keyup_events(self, event):
@@ -42,7 +42,7 @@ class AlienInvasion:
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 self.ship.moving_left = False
-               
+                
     def _check_events(self):
         # Чтение событий
         for event in pygame.event.get():
@@ -54,10 +54,12 @@ class AlienInvasion:
                 self._check_keyup_events(event)
                 
     def _update_screen(self):
-            #self.screen.fill(self.settings.bg_color)
             self.screen.blit(self.backgroud_image, (0, 0))
             self.ship.blitme()
             
+            for bullet in self.bullets.sprites():
+                bullet.draw_bullet()  
+                          
             pygame.display.flip() 
                  
     def run_game(self):
