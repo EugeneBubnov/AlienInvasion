@@ -75,4 +75,3 @@ if __name__ == '__main__':
     #Создание экземпляра и запуск игры
     ai = AlienInvasion()
     ai.run_game()
-    
