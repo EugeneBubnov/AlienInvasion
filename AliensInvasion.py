@@ -2,7 +2,7 @@ import sys
 import pygame
 from settings import settings
 from ship import *
-from bullet import Bullet
+from bullet import *
 
 # Класс для управления ресурсами и поведением игры
 class AlienInvasion:
@@ -17,7 +17,7 @@ class AlienInvasion:
 
         self.backgroud_image = pygame.image.load('models\\background_1.png')
         
-       # self.bullets = pygame.sprite.Group  
+        self.bullets = pygame.sprite.Group()
                
     #def _fire_bullet(self):
        # new_bullet = Bullet(self)
@@ -65,7 +65,7 @@ class AlienInvasion:
         while(True):
             self._check_events()
             self.ship.update()
-           # self.bullets.update()
+            self.bullets.update()
             self._update_screen()
 
                         
@@ -73,3 +73,4 @@ if __name__ == '__main__':
     #Создание экземпляра и запуск игры
     ai = AlienInvasion()
     ai.run_game()
+    
