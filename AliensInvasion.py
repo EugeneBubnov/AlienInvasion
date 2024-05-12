@@ -13,23 +13,20 @@ class AlienInvasion:
         pygame.display.set_caption('Alien Invasion')  # Title
         self.settings = settings()  # init class settings()
 
-        self.backgroud_image = pygame.image.load('models\\background_1.png')
+        self.backgroud_image = pygame.image.load('models\\background.png')
+        self.screen = pygame.display.set_mode((1920, 1080), pygame.FULLSCREEN)  # Display size
 
-        self.screen = pygame.display.set_mode(
-            (1920, 1080), pygame.FULLSCREEN)  # Display size
         self.ship = Ship(self)  # init spaceship
-
+        self.bullets = pygame.sprite.Group()  # Container for sprites group
         self.aliens = pygame.sprite.Group()  # Container for sprites group
         self._create_fleet()
-
-        self.bullets = pygame.sprite.Group()  # Container for sprites group
 
     def _create_fleet(self):
         alien = Alien(self)
         self.aliens.add(alien)
 
     def _fire_bullet(self):
-        #if len(self.bullets) < self.settings.bullet_allowed:
+        if len(self.bullets) < self.settings.bullet_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
             
