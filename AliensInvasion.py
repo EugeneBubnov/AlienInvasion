@@ -6,8 +6,6 @@ from bullet import *
 from alien import Alien
 
 # Класс для управления ресурсами и поведением игры
-
-
 class AlienInvasion:
     # Инициализация игры и создание ресурсов
     def __init__(self):
