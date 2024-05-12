@@ -12,7 +12,6 @@ class AlienInvasion:
         pygame.init()  # game init
         pygame.display.set_caption('Alien Invasion')  # Title
         self.settings = settings()  # init class settings()
-
         self.backgroud_image = pygame.image.load('models\\background.png')
         self.screen = pygame.display.set_mode((1920, 1080), pygame.FULLSCREEN)  # Display size
 
@@ -25,6 +24,7 @@ class AlienInvasion:
         alien = Alien(self)
         self.aliens.add(alien)
 
+    # Bullets
     def _fire_bullet(self):
         if len(self.bullets) < self.settings.bullet_allowed:
             new_bullet = Bullet(self)
@@ -37,6 +37,7 @@ class AlienInvasion:
                 self.bullets.remove(bullet)
         print(len(self.bullets))
 
+    # Events checker(keyboard actions)
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             # move to right
@@ -77,6 +78,7 @@ class AlienInvasion:
 
         pygame.display.flip()
 
+    # Main game cycle.
     def run_game(self):
         # Запуск основного цикла игры
         while (True):
@@ -84,9 +86,6 @@ class AlienInvasion:
             self.ship.update()
             self._update_bullets()
             self._update_screen()
-
-
-
 
 if __name__ == '__main__':
     # Создание экземпляра и запуск игры
