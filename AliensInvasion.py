@@ -128,7 +128,6 @@ class AlienInvasion:
             self._update_aliens()
             self._update_screen()
 
-
 if __name__ == '__main__':
     # Создание экземпляра и запуск игры
     ai = AlienInvasion()
