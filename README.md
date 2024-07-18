@@ -1,2 +1,2 @@
-Pet project: Alien Invasion
+Pet project: Alien Invasion<br/>
 Engine: Pygame
